@@ -1,0 +1,226 @@
+
+<div class="container">
+   <div class="row">
+    <div class="panel panel-default custompanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Guidelines</h3>
+      </div>
+      <div class="panel-body labelText">
+        <ul>
+          <li> duration of tour</li>
+          <li> description of what is included in the tour</li>
+          <li> description of what will be seen/done during the tour</li>
+          <li> name of the city where the tour departs...of what will be seen/done during the tour</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clear-fix"></div>
+  <div class="row ">
+    <div class="panel panel-default custompanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Project Details</h3>
+      </div>
+      <div class="panel-body labelText">
+        <div class="row">
+          <div class="col-md-2">
+            <label>Client/Account <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Client Name" required class="form-control" [(ngModel)]="projectDetails.Client_Account">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Project Name <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Project Name" required class="form-control" [(ngModel)]="projectDetails.Project">
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Product Name <span class="requiredcss">*</span> </label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Product Name" required class="form-control" [(ngModel)]="projectDetails.Product">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Date </label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Date" class="form-control" required [(ngModel)]="projectDetails.CreatedOn" readonly>
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Project Manager <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="PM Name" required class="form-control" [(ngModel)]="projectDetails.ProjectManager">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Email ID <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.PM_EmailID">
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Sizing Done By <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Name" required class="form-control" [(ngModel)]="projectDetails.SizingDoneBy">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Email ID <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.SDB_EmailID">
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Quote Created By <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Name" required class="form-control" [(ngModel)]="projectDetails.QuotationDoneBy">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Email ID <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.QDB_EmailID">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear-fix"></div>
+  <div class="row ">
+    <div class="panel panel-default custompanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Costing Details</h3>
+      </div>
+      <div class="panel-heading subpanelheading">
+        <h3 class="panel-title">Environment Details</h3>
+      </div>
+      <div class="panel-body labelText">
+        <div class="row">
+          <div class="col-md-2">
+            <label>Environment <span class="requiredcss">*</span> </label>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control customdropdown" [(ngModel)]="projectDetails.Environment" required>
+              <option>Select</option>
+              <option>Demo</option>
+              <option>Development</option>
+              <option>QA</option>
+              <option>Production</option>
+              <option>UAT</option>
+              <option>Pre-Production</option>
+              <option>Others</option>
+            </select>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Concurrent User Count <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type="number" placeholder="Count" required class="form-control" [(ngModel)]="projectDetails.ConcurrentUserCount">
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Deployment Region <span class="requiredcss">*</span></label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Region Name" required class="form-control" [(ngModel)]="projectDetails.DeploymentRegion">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <label>Duration <span class="requiredcss">*</span> </label>
+          </div>
+          <div class="col-md-3">
+            <input type=text placeholder="Duration" required class="form-control" [(ngModel)]="projectDetails.Duration">
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+      </div>
+      <div class="panel-heading subpanelheading">
+        <h3 class="panel-title">Resources Cost Details</h3>
+      </div>
+      <div class="panel-body labelText">
+        <div class="row">
+          <div class="col-md-3">
+            <label>Resource Type</label>
+          </div>
+          <div class="col-md-3">
+            <label>Size</label>
+          </div>
+          <div class="col-md-3">
+            <label>Description</label>
+          </div>
+          <div class="col-md-2">
+            <label>Price/Month</label>
+          </div>
+          <div class="col-md-1">
+              <label>Delete Resource</label>
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let resourceRow of resourceDetails;let i=index">
+          <div class="col-md-3">
+            <select class="form-control customdropdown" [(ngModel)]="resourceDetails[i].ResourceType" (change)="GetResourceSizes($event.target.value,i)">
+              <option value="Select">Select</option> 
+                <option *ngFor="let resource of resourcesList" >
+                    {{resource.Type}}
+                </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control customdropdown" [(ngModel)]="resourceDetails[i].ResourceSize" (change)="GetResourceSizeDescription($event.target.value,i)">
+                <option *ngIf = "resourceRow.Sizes.length==0" value="N/A">N/A</option> 
+                <option *ngIf = "resourceRow.Sizes.length!=0" value="Select">Select</option> 
+                <option *ngFor="let size of resourceRow.Sizes" >
+                    {{size.Size}}
+                </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="resourceDetails[i].SizeDescription" readonly />
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" [(ngModel)]="resourceDetails[i].Price" />
+          </div>
+          <div class="col-md-1">    
+                  <button (click)="Delete(i)" class="btn btn-danger cusbtntrash">
+                  <i class="glyphicon glyphicon-trash"></i></button>
+          </div>
+          <div class="clear-fix"></div>
+        </div>      
+          
+        <div class="row">
+        <input type="button" class="btn btn-primary custombutton" value="Add New Resource" (click)="addNewResource()"/>
+          <!-- <a class='col-md-2' href="#" >Add New Resource</a> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+         <div class="col-md-8"> <input type="button" class="btn btn-primary" value="Submit" (click)="SubmitClick()"/></div>
+          <div class="col-md-4"></div>
+            <!-- <a class='col-md-2' href="#" >Add New Resource</a> -->
+          </div>
+        </div>
+    </div>
+
+  </div>

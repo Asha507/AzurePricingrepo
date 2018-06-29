@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AzurePricingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ProjectDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_Account" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Project" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Product" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectManager" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PM_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SizingDoneBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDB_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="QuotationDoneBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="QDB_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CostingEztimation" Type="money" />
+          <Property Name="Environment" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ConcurrentUserCount" Type="int" Nullable="false" />
+          <Property Name="DeploymentRegion" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectResources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_ID" Type="int" Nullable="false" />
+          <Property Name="ResourceType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ResourceSize" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SizeDescription" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RateCardData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeterID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MeterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MeterCategory" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MeterSubCategory" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MeterTags" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MeterRegion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MeterRates" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="IncludedQuantity" Type="int" Nullable="false" />
+          <Property Name="MeterStatus" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProjectResources_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="1" />
+          <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectResources">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AzurePricingModelStoreContainer">
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectResources" EntityType="Self.ProjectResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateCardData" EntityType="Self.RateCardData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProjectResources_ProjectDetails" Association="Self.FK_ProjectResources_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+            <End Role="ProjectResources" EntitySet="ProjectResources" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AzurePricingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ProjectDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_Account" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Product" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProjectManager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PM_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SizingDoneBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDB_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuotationDoneBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QDB_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CostingEztimation" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Environment" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConcurrentUserCount" Type="Int32" Nullable="false" />
+          <Property Name="DeploymentRegion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProjectResources" Relationship="Self.FK_ProjectResources_ProjectDetails" FromRole="ProjectDetails" ToRole="ProjectResources" />
+        </EntityType>
+        <EntityType Name="ProjectResource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_ID" Type="Int32" Nullable="false" />
+          <Property Name="ResourceType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResourceSize" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SizeDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ProjectDetail" Relationship="Self.FK_ProjectResources_ProjectDetails" FromRole="ProjectResources" ToRole="ProjectDetails" />
+        </EntityType>
+        <EntityType Name="RateCardData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeterID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterSubCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterTags" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeterRates" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IncludedQuantity" Type="Int32" Nullable="false" />
+          <Property Name="MeterStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProjectResources_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="1" />
+          <End Role="ProjectResources" Type="Self.ProjectResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectResources">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AzurePricingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetail" />
+          <EntitySet Name="ProjectResources" EntityType="Self.ProjectResource" />
+          <EntitySet Name="RateCardDatas" EntityType="Self.RateCardData" />
+          <AssociationSet Name="FK_ProjectResources_ProjectDetails" Association="Self.FK_ProjectResources_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+            <End Role="ProjectResources" EntitySet="ProjectResources" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AzurePricingModelStoreContainer" CdmEntityContainer="AzurePricingEntities">
+          <EntitySetMapping Name="ProjectDetails">
+            <EntityTypeMapping TypeName="AzurePricingModel.ProjectDetail">
+              <MappingFragment StoreEntitySet="ProjectDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Client_Account" ColumnName="Client_Account" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ProjectManager" ColumnName="ProjectManager" />
+                <ScalarProperty Name="PM_EmailID" ColumnName="PM_EmailID" />
+                <ScalarProperty Name="SizingDoneBy" ColumnName="SizingDoneBy" />
+                <ScalarProperty Name="SDB_EmailID" ColumnName="SDB_EmailID" />
+                <ScalarProperty Name="QuotationDoneBy" ColumnName="QuotationDoneBy" />
+                <ScalarProperty Name="QDB_EmailID" ColumnName="QDB_EmailID" />
+                <ScalarProperty Name="CostingEztimation" ColumnName="CostingEztimation" />
+                <ScalarProperty Name="Environment" ColumnName="Environment" />
+                <ScalarProperty Name="ConcurrentUserCount" ColumnName="ConcurrentUserCount" />
+                <ScalarProperty Name="DeploymentRegion" ColumnName="DeploymentRegion" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectResources">
+            <EntityTypeMapping TypeName="AzurePricingModel.ProjectResource">
+              <MappingFragment StoreEntitySet="ProjectResources">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+                <ScalarProperty Name="ResourceSize" ColumnName="ResourceSize" />
+                <ScalarProperty Name="SizeDescription" ColumnName="SizeDescription" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateCardDatas">
+            <EntityTypeMapping TypeName="AzurePricingModel.RateCardData">
+              <MappingFragment StoreEntitySet="RateCardData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+                <ScalarProperty Name="MeterName" ColumnName="MeterName" />
+                <ScalarProperty Name="MeterCategory" ColumnName="MeterCategory" />
+                <ScalarProperty Name="MeterSubCategory" ColumnName="MeterSubCategory" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="MeterTags" ColumnName="MeterTags" />
+                <ScalarProperty Name="MeterRegion" ColumnName="MeterRegion" />
+                <ScalarProperty Name="MeterRates" ColumnName="MeterRates" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="IncludedQuantity" ColumnName="IncludedQuantity" />
+                <ScalarProperty Name="MeterStatus" ColumnName="MeterStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

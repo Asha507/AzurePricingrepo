@@ -1,0 +1,30 @@
+.custompanel
+{
+    margin :3% 0% 0% 0%;
+    width: 100%;
+    font-size:14px;
+}
+.subpanelheading
+{
+    background-color: white;
+}
+.customdropdown
+{
+   height: calc(2.25rem + 14px) !important;
+}
+.custombutton
+{
+    margin: 1%;
+}
+.cusbtntrash
+{
+    padding:12% 13% 11% 15%;
+}
+.btnlatest
+{
+    margin-top: 2%;
+}
+.requiredcss
+{
+    color: red;
+}

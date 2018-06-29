@@ -1,0 +1,80 @@
+{
+	"Resource": [{
+			"Type": "Virtual Machines",
+			"Sizes": [{
+					"Size": "D2 - 2 Core/7 GB/128 GB HDD/Windows",
+					"Description": "Standard_F2 VM Low Priority (Windows)"
+				},
+				{
+					"Size": "D11 - 2 Core/14 GB/128 GB HDD/Windows",
+					"Description": "A6 VM (Windows)"
+				},
+				{
+					"Size": "D3 - 4 Core/14 GB/128 GB HDD/Windows",
+					"Description": "Standard_A8m_v2 VM Low Priority"
+				},
+				{
+					"Size": "B2 - 2 Core/8 GB/128 GB HDD/Windows",
+					"Description": "Standard_L32 VM Low Priority"
+				},
+				{
+					"Size": "B4 - 4 Core/16 GB/128 GB HDD/Windows",
+					"Description": "Standard_D2_v2 VM Low Priority (Windows)"
+				},
+				{
+					"Size": "A2 - 2 Core/16 GB/128 GB HDD/Windows",
+					"Description": "Standard_E2_v3 VM (Windows)"
+				}
+			]
+		},
+		{
+			"Type": "AzureSQL Database",
+			"Sizes": [{
+				"Size": "",
+				"Description": ""
+			}]
+		},
+		{
+			"Type": "Storage",
+			"Sizes": [{
+				"Size": "",
+				"Description": ""
+			}]
+		},
+		{
+			"Type": "App Service Plan (Web / API)",
+			"Sizes": [{
+				"Size": "",
+				"Description": ""
+			}]
+		},
+		{
+			"Type": "Bandwidth (Outbound data)",
+			"Sizes": [{
+				"Size": "",
+				"Description": ""
+			}]
+		},
+		{
+			"Type": "Public IP"
+		},
+		{
+			"Type": "Load Balancer"
+		},
+		{
+			"Type": "WAF"
+		},
+		{
+			"Type": "Backup Requirements"
+		},
+		{
+			"Type": "Software Requirements"
+		},
+		{
+			"Type": "VPN Gateway"
+		},
+		{
+			"Type": "Additional Comments if any"
+		}
+	]
+}
