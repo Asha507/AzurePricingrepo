@@ -28,3 +28,6 @@
 {
     color: red;
 }
+hr.divider {
+        border-top: 1px dotted #8c8b8b;
+    }

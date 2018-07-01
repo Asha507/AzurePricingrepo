@@ -14,7 +14,7 @@ export class ProjectdetailsComponent implements OnInit {
   resourcesList: Array<ResourceType>;
   projectDetails: ProjectDetails;
   resourceDetails: Array<ResourceDetails> = [];
-
+  totalCost:number=0;
   constructor(private resourcesService: ResourcesService, private pricingService: PricingService) { }
 
   ngOnInit() {
@@ -55,7 +55,9 @@ export class ProjectdetailsComponent implements OnInit {
       this.resourceDetails[i].SizeDescription = "";
     else {
       this.pricingService.GetpricingDetails(this.resourceDetails[i].ResourceType, this.resourceDetails[i].SizeDescription, this.projectDetails.DeploymentRegion).subscribe(res => {
-        this.resourceDetails[i].Price = res;// console.log(res);
+        this.resourceDetails[i].Price = res;
+        this.totalCost=this.totalCost+(+res);
+        // console.log(res);
       }
       );
     }

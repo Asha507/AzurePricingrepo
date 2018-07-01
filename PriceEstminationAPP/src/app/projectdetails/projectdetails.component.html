@@ -1,4 +1,5 @@
 
+<form #f="ngForm">
 <div class="container">
    <div class="row">
     <div class="panel panel-default custompanel">
@@ -27,14 +28,14 @@
             <label>Client/Account <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Client Name" required class="form-control" [(ngModel)]="projectDetails.Client_Account">
+            <input type=text placeholder="Client Name" name="clientName" required class="form-control" [(ngModel)]="projectDetails.Client_Account" clientName="ngModel">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Project Name <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Project Name" required class="form-control" [(ngModel)]="projectDetails.Project">
+            <input type=text placeholder="Project Name" name="projectName" projectName="ngModel" required class="form-control" [(ngModel)]="projectDetails.Project">
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -43,14 +44,14 @@
             <label>Product Name <span class="requiredcss">*</span> </label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Product Name" required class="form-control" [(ngModel)]="projectDetails.Product">
+            <input type=text placeholder="Product Name" name="productName" productName="ngModel" required class="form-control" [(ngModel)]="projectDetails.Product">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Date </label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Date" class="form-control" required [(ngModel)]="projectDetails.CreatedOn" readonly>
+            <input type=text placeholder="Date" name="date" date="ngModel" class="form-control" required [(ngModel)]="projectDetails.CreatedOn" readonly>
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -59,14 +60,14 @@
             <label>Project Manager <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="PM Name" required class="form-control" [(ngModel)]="projectDetails.ProjectManager">
+            <input type=text placeholder="PM Name" name="pmName" pmName="ngModel" required class="form-control" [(ngModel)]="projectDetails.ProjectManager">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Email ID <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.PM_EmailID">
+            <input type=text placeholder="Email ID" name="pmEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" pmEmail="ngModel" required class="form-control" [(ngModel)]="projectDetails.PM_EmailID">
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -75,14 +76,14 @@
             <label>Sizing Done By <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Name" required class="form-control" [(ngModel)]="projectDetails.SizingDoneBy">
+            <input type=text placeholder="Name" name="sdbName" sdbName="ngModel" required class="form-control" [(ngModel)]="projectDetails.SizingDoneBy">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Email ID <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.SDB_EmailID">
+            <input type=text placeholder="Email ID" name="sdbEmail" sdbEmail="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" [(ngModel)]="projectDetails.SDB_EmailID">
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -91,14 +92,14 @@
             <label>Quote Created By <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Name" required class="form-control" [(ngModel)]="projectDetails.QuotationDoneBy">
+            <input type=text placeholder="Name" name="qcb" qcb="ngModel" required class="form-control" [(ngModel)]="projectDetails.QuotationDoneBy">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Email ID <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Email ID" required class="form-control" [(ngModel)]="projectDetails.QDB_EmailID">
+            <input type=text placeholder="Email ID" name="qcbEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" qcbEmail="ngModel" required class="form-control" [(ngModel)]="projectDetails.QDB_EmailID">
           </div>
         </div>
       </div>
@@ -119,7 +120,7 @@
             <label>Environment <span class="requiredcss">*</span> </label>
           </div>
           <div class="col-md-3">
-            <select class="form-control customdropdown" [(ngModel)]="projectDetails.Environment" required>
+            <select class="form-control customdropdown" [(ngModel)]="projectDetails.Environment" name="environment" environment="ngModel" required>
               <option>Select</option>
               <option>Demo</option>
               <option>Development</option>
@@ -135,7 +136,7 @@
             <label>Concurrent User Count <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type="number" placeholder="Count" required class="form-control" [(ngModel)]="projectDetails.ConcurrentUserCount">
+            <input type="number" placeholder="Count" name="CUC" CUC="ngModel" required class="form-control" [(ngModel)]="projectDetails.ConcurrentUserCount">
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -144,14 +145,14 @@
             <label>Deployment Region <span class="requiredcss">*</span></label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Region Name" required class="form-control" [(ngModel)]="projectDetails.DeploymentRegion">
+            <input type=text placeholder="Region Name" name="deployment" deployment="ngModel" required class="form-control" [(ngModel)]="projectDetails.DeploymentRegion">
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
             <label>Duration <span class="requiredcss">*</span> </label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Duration" required class="form-control" [(ngModel)]="projectDetails.Duration">
+            <input type=text placeholder="Duration" name="duration" duration="ngModel" required class="form-control" [(ngModel)]="projectDetails.Duration">
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -180,7 +181,7 @@
 
         <div class="row" *ngFor="let resourceRow of resourceDetails;let i=index">
           <div class="col-md-3">
-            <select class="form-control customdropdown" [(ngModel)]="resourceDetails[i].ResourceType" (change)="GetResourceSizes($event.target.value,i)">
+            <select class="form-control customdropdown" name="resourceType" resourceType="ngModel" [(ngModel)]="resourceDetails[i].ResourceType" (change)="GetResourceSizes($event.target.value,i)">
               <option value="Select">Select</option> 
                 <option *ngFor="let resource of resourcesList" >
                     {{resource.Type}}
@@ -188,7 +189,7 @@
             </select>
           </div>
           <div class="col-md-3">
-            <select class="form-control customdropdown" [(ngModel)]="resourceDetails[i].ResourceSize" (change)="GetResourceSizeDescription($event.target.value,i)">
+            <select class="form-control customdropdown" name="size" size="ngModel" [(ngModel)]="resourceDetails[i].ResourceSize" (change)="GetResourceSizeDescription($event.target.value,i)">
                 <option *ngIf = "resourceRow.Sizes.length==0" value="N/A">N/A</option> 
                 <option *ngIf = "resourceRow.Sizes.length!=0" value="Select">Select</option> 
                 <option *ngFor="let size of resourceRow.Sizes" >
@@ -197,7 +198,7 @@
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="resourceDetails[i].SizeDescription" readonly />
+            <input type="text" class="form-control" name="description" description="ngModel" [(ngModel)]="resourceDetails[i].SizeDescription" readonly />
           </div>
           <div class="col-md-2">
             <input type="text" class="form-control" [(ngModel)]="resourceDetails[i].Price" />
@@ -211,16 +212,31 @@
           
         <div class="row">
         <input type="button" class="btn btn-primary custombutton" value="Add New Resource" (click)="addNewResource()"/>
-          <!-- <a class='col-md-2' href="#" >Add New Resource</a> -->
         </div>
       </div>
+      <hr class="divider">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+          <div class="col-md-4">
+            <label>Total</label>
+          </div>
+          <div class="col-md-8">
+            <input class="form-control" type="text" name="total" total="ngModel" placeholder="Total cost" [(ngModel)]="totalCost"/>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="clear-fix"></div>
       <div class="row">
         <div class="col-md-4"></div>
-         <div class="col-md-8"> <input type="button" class="btn btn-primary" value="Submit" (click)="SubmitClick()"/></div>
-          <div class="col-md-4"></div>
+         <div class="col-md-2"> <input type="button" class="form-control btn btn-primary"   [disabled]="!f.dirty || !f.valid" value="Submit" (click)="SubmitClick()"/></div>
+          <div class="col-md-6"></div>
             <!-- <a class='col-md-2' href="#" >Add New Resource</a> -->
           </div>
+          <hr class="divider">
         </div>
     </div>
 
   </div>
+</form>
