@@ -80,15 +80,34 @@ namespace AzurePricingEstimatedAPIAPP.Controllers
 
         }
 
+        [HttpGet]
+        [Route("GetEstimationDetailsByID")]
+        public ProjectDetail GetEstimationDetailsByID(string id)
+        {
+            PricingHelper helper = new PricingHelper();
+            ProjectDetail selectedEstimation = helper.GetEstimationDetailsByID(id);
+            return selectedEstimation;
+        }
+
+        [HttpGet]
+        [Route("GetAllEstimationDetailsByEmail")]
+        public List<ProjectDetail> GetAllEstimationDetailsByEmail(string email)
+        {
+            PricingHelper helper = new PricingHelper();
+            List<ProjectDetail> selectedEstimation = helper.GetEstimationDetailsByEmail(email);
+            return selectedEstimation;
+
+        }
+
         [HttpPost]
-        public string SavePricingData()
+        public int SavePricingData()
         {
             var httpRequest = HttpContext.Current.Request;
             dynamic projectDetails = JsonConvert.DeserializeObject<object>(httpRequest.Params["ProjectDetails"]);
             ProjectDetail detail = projectDetails.ToObject<ProjectDetail>();
             PricingHelper helper = new PricingHelper();
-            helper.SaveProjectPricingDetais(detail);
-            return "success";
+           int id= helper.SaveProjectPricingDetais(detail);
+           return id;
         }
         public static string GetOAuthTokenFromAAD()
         {

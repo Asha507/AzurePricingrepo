@@ -30,28 +30,85 @@
 		{
 			"Type": "AzureSQL Database",
 			"Sizes": [{
-				"Size": "",
+				"Size": "5 DTU/2 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "10 DTU/250 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "20 DTU/250 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "50 DTU/250 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "100 DTU/250 GB Storage",
 				"Description": ""
 			}]
 		},
 		{
 			"Type": "Storage",
 			"Sizes": [{
-				"Size": "",
+				"Size": "100 GB",
 				"Description": ""
-			}]
+			},
+			{
+				"Size": "200 GB",
+				"Description": ""
+			},
+			{
+				"Size": "300 GB",
+				"Description": ""
+			},
+			{
+				"Size": "400 GB",
+				"Description": ""
+			},
+			{
+				"Size": "500 GB",
+				"Description": ""
+			}
+		]
 		},
 		{
 			"Type": "App Service Plan (Web / API)",
 			"Sizes": [{
-				"Size": "",
+				"Size": "1 Core / 1.75 GB RAM / 10 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "2 Core / 7 GB RAM / 10 GB Storage",
+				"Description": ""
+			},
+			{
+				"Size": "4 Core / 7 GB RAM / 10 GB Storage",
 				"Description": ""
 			}]
 		},
 		{
 			"Type": "Bandwidth (Outbound data)",
 			"Sizes": [{
-				"Size": "",
+				"Size": "100 GB",
+				"Description": ""
+			},
+			{
+				"Size": "200 GB",
+				"Description": ""
+			},
+			{
+				"Size": "300 GB",
+				"Description": ""
+			},
+			{
+				"Size": "400 GB",
+				"Description": ""
+			},
+			{
+				"Size": "500 GB",
 				"Description": ""
 			}]
 		},

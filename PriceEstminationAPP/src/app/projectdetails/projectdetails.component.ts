@@ -4,6 +4,10 @@ import { ResourceType, ResourceSizes } from 'src/app/ResourceType';
 import { ProjectDetails } from './ProjectDetails';
 import { ResourceDetails } from './ResourceDetails';
 import { PricingService } from '../services/pricing-service.service';
+import { EnvironmentTypes } from '../Environment.Types';
+import { DurationsList } from '../DurationsList';
+import { Regions } from '../Regions';
+import { ConcurrentUsers } from '../ConcurrentUsers';
 
 @Component({
   selector: 'app-projectdetails',
@@ -14,7 +18,11 @@ export class ProjectdetailsComponent implements OnInit {
   resourcesList: Array<ResourceType>;
   projectDetails: ProjectDetails;
   resourceDetails: Array<ResourceDetails> = [];
-  totalCost:number=0;
+  environments: Array<EnvironmentTypes>;
+  durations: Array<DurationsList>;
+  deploymentRegions: Array<Regions>;
+  concurrentUsers: Array<ConcurrentUsers>;
+  totalCost: number = 0;
   constructor(private resourcesService: ResourcesService, private pricingService: PricingService) { }
 
   ngOnInit() {
@@ -22,19 +30,32 @@ export class ProjectdetailsComponent implements OnInit {
     this.projectDetails = new ProjectDetails();
     this.projectDetails.CreatedOn = new Date().toLocaleDateString();
     this.projectDetails.Environment = "Select";
+    this.projectDetails.CostingEstimation = 0;
     this.projectDetails.ProjectResources = this.resourceDetails;
     this.addNewResource();
-    this.resourcesService.getJSON().subscribe(data => {
+    this.resourcesService.getJSONData("Environments.json").subscribe(res => {
+      this.environments = res.Environment;
+    });
+    this.resourcesService.getJSONData("Resources.json").subscribe(data => {
       this.resourcesList = data.Resource;
     });
+    this.resourcesService.getJSONData("Durations.json").subscribe(res => {
+      this.durations = res.DurationsList;
+    });
+    this.resourcesService.getJSONData("Regions.json").subscribe(res => {
+      this.deploymentRegions = res.Region;
+    });
+    this.resourcesService.getJSONData("ConcurrentUsers.json").subscribe(res => {
+      this.concurrentUsers = res.ConcurrentUser;
+    });
   }
+
   addNewResource() {
     this.resourceDetails.push(
       { ResourceType: 'Select', ResourceSize: 'Select', SizeDescription: '', Price: '0', Sizes: [] }
     );
   }
   GetResourceSizes(value, i) {
-    debugger;
     this.resourceDetails[i].ResourceSize = "Select";
     this.resourceDetails[i].Price = "0";
     this.resourceDetails[i].SizeDescription = "";
@@ -48,7 +69,6 @@ export class ProjectdetailsComponent implements OnInit {
     }
   }
   GetResourceSizeDescription(value, i) {
-    debugger;
     this.resourceDetails[i].SizeDescription = this.resourcesList.find(x => x.Type == this.resourceDetails[i].ResourceType).Sizes
       .find(size => size.Size == value).Description;
     if (this.resourceDetails[i].SizeDescription == undefined)
@@ -56,7 +76,7 @@ export class ProjectdetailsComponent implements OnInit {
     else {
       this.pricingService.GetpricingDetails(this.resourceDetails[i].ResourceType, this.resourceDetails[i].SizeDescription, this.projectDetails.DeploymentRegion).subscribe(res => {
         this.resourceDetails[i].Price = res;
-        this.totalCost=this.totalCost+(+res);
+        this.projectDetails.CostingEstimation = this.projectDetails.CostingEstimation + (+res);
         // console.log(res);
       }
       );
@@ -64,15 +84,36 @@ export class ProjectdetailsComponent implements OnInit {
 
   }
   Delete(i) {
+    debugger;
+    let cost = this.resourceDetails[i].Price;
     this.resourceDetails.splice(i, 1);
+    this.projectDetails.CostingEstimation = this.projectDetails.CostingEstimation - (+cost);
+  }
+  ResetResourceCosting() {
+    this.projectDetails.CostingEstimation = 0;
+
+    this.resourceDetails.forEach(resource => {
+      if (resource.ResourceType != "Select" && (resource.SizeDescription != "Select")) {
+        this.pricingService.GetpricingDetails(resource.ResourceType, resource.SizeDescription,
+          this.projectDetails.DeploymentRegion).subscribe(res => {
+            resource.Price = res;
+            this.projectDetails.CostingEstimation = this.projectDetails.CostingEstimation + (+res);
+          });
+      }
+      else
+      {
+        resource.Price="0";
+      }
+    });
+
+
   }
   SubmitClick() {
-    debugger;
     this.projectDetails.ProjectResources = this.resourceDetails;
     let formData: FormData = new FormData();
     formData.append("ProjectDetails", JSON.stringify(this.projectDetails));
     this.pricingService.SaveProjectDetails(formData).subscribe(res => {
-      console.log(res.json());
+      alert("Successfully submitted , your estimation id is " + res);
     });
 
   }

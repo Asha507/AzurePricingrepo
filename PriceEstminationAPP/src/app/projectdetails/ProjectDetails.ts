@@ -12,7 +12,7 @@ export class ProjectDetails
     SDB_EmailID:string;
     QuotationDoneBy:string;
     QDB_EmailID:string;
-    CostingEztimation:number;
+    CostingEstimation:number;
     Environment:string;
     ConcurrentUserCount:Number;
     DeploymentRegion:string;
