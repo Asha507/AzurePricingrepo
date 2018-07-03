@@ -71,43 +71,44 @@ namespace AzurePricingEstimatedAPIAPP.Controllers
         }
 
         [HttpGet]
+        [Route("GetEstimationsByID")]
+        public List<ProjectDetail> GetEstimationsByID(int id)
+        {
+            PricingHelper helper = new PricingHelper();
+            List<ProjectDetail> detail =helper.GetEstimationDetailsByID(id);
+            return detail;
+
+        }
+
+        [HttpGet]
+        [Route("GetEstimationsByEmail")]
+        public List<ProjectDetail> GetEstimationsByEmail(string email)
+        {
+            PricingHelper helper = new PricingHelper();
+            List<ProjectDetail> detail = helper.GetEstimationDetailsByEmail(email);
+            return detail;
+
+        }
+
+        [HttpGet]
         [Route("GetPrice")]
         public string GetPrice(string Category, string SubCategory, string Region)
         {
             PricingHelper helper = new PricingHelper();
-            string price=helper.GetPriceDetails(Category, SubCategory, Region);
+            string price = helper.GetPriceDetails(Category, SubCategory, Region);
             return (Convert.ToDouble(price) * 744).ToString();
 
         }
 
-        [HttpGet]
-        [Route("GetEstimationDetailsByID")]
-        public ProjectDetail GetEstimationDetailsByID(string id)
-        {
-            PricingHelper helper = new PricingHelper();
-            ProjectDetail selectedEstimation = helper.GetEstimationDetailsByID(id);
-            return selectedEstimation;
-        }
-
-        [HttpGet]
-        [Route("GetAllEstimationDetailsByEmail")]
-        public List<ProjectDetail> GetAllEstimationDetailsByEmail(string email)
-        {
-            PricingHelper helper = new PricingHelper();
-            List<ProjectDetail> selectedEstimation = helper.GetEstimationDetailsByEmail(email);
-            return selectedEstimation;
-
-        }
-
         [HttpPost]
-        public int SavePricingData()
+        public string SavePricingData()
         {
             var httpRequest = HttpContext.Current.Request;
             dynamic projectDetails = JsonConvert.DeserializeObject<object>(httpRequest.Params["ProjectDetails"]);
             ProjectDetail detail = projectDetails.ToObject<ProjectDetail>();
             PricingHelper helper = new PricingHelper();
-           int id= helper.SaveProjectPricingDetais(detail);
-           return id;
+            helper.SaveProjectPricingDetais(detail);
+            return "success";
         }
         public static string GetOAuthTokenFromAAD()
         {

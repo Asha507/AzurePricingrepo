@@ -1,3 +1,74 @@
-<p>
-  estimations works!
-</p>
+<div class="container">
+
+  <div class="row estimationdiv">
+    <div class="col-md-12">
+      <div class="panel panel-default panel-table">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-5">
+              <h3 class="panel-title">Estimations Info</h3>
+            </div>          
+          </div>
+          <div class="clear-fix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                  <h3 class="panel-title">Search By</h3>
+                </div> 
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Quote created by EmailID"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Estimation ID"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                    </div>
+                  </div>  
+                  <div class="col-md-3">
+                      <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Client">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                      </div>
+                  </div>           
+              </div>
+              <div class="clear-fix">{{data}}</div>
+          <div class="table-responsive font-custom" *ngIf="data?.length>0">
+            <table class="table table-bordered">
+              <thead>
+                <th>Estimation ID</th>
+                <th>Client Name</th>
+                <th>Project Name</th>
+                <th>Created ON</th>
+                <th>EmailID</th>
+                <th>View Details</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of data">
+                  <td>{{item["ID"]}}</td>
+                  <td>{{item["Client_Account"]}}</td>
+                  <td>{{item["Project"]}}</td>
+                  <td>{{item["CreatedOn"]}}</td>
+                  <td>{{item["QDB_EmailID"]}}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+              No Records to display            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

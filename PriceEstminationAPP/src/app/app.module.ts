@@ -9,7 +9,15 @@ import { ResourcesService } from 'src/app/services/resources.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EstimationsComponent } from './estimations/estimations.component';
 import { MenuComponent } from './menu/menu.component';
+import{RouterModule,Routes} from '@angular/router';
+import { DataFilterPipe } from './data-filter.pipe'
+import {DataTableModule} from "angular2-datatable";
 
+const routes:Routes=[
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
+  {path:'Home',component:EstimationsComponent},
+  {path:'Estimate',component:ProjectdetailsComponent}
+ ];
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +25,15 @@ import { MenuComponent } from './menu/menu.component';
     FooterComponent,
     ProjectdetailsComponent,
     EstimationsComponent,
-    MenuComponent
+    MenuComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DataTableModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [ResourcesService],
   bootstrap: [AppComponent]

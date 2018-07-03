@@ -1,0 +1,25 @@
+.customnav
+{
+    flex-direction: row;
+}
+.customnavbar
+{
+    display: block;
+    margin: 2% 8% 0% 8%;
+    font-size: 14px;
+   
+}
+.navbar-nav li a
+{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.navbar-nav li a:hover
+{
+    background-color:rgba(202, 197, 197, 0.993);
+    color: black;;
+}
+.navbar-nav li a:active
+{
+    color: rgb(3, 0, 0);;
+}

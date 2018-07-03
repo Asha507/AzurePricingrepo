@@ -31,3 +31,7 @@
 hr.divider {
         border-top: 1px dotted #8c8b8b;
     }
+    .input-group-addon
+    {
+        width: auto  !important;
+    }

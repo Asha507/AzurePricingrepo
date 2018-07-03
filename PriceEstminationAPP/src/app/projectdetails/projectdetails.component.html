@@ -342,7 +342,10 @@
               readonly />
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" name="Price" #Price="ngModel" [(ngModel)]="resourceRow.Price" readonly />
+              <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" class="form-control" name="Price" #Price="ngModel" [(ngModel)]="resourceRow.Price" readonly>    
+                </div>
           </div>
           <div class="col-md-1">
             <button (click)="Delete(i)" class="btn btn-danger cusbtntrash">
@@ -364,8 +367,10 @@
             <label>Total(USD)</label>
           </div>
           <div class="col-md-7">
-            <input class="form-control" type="text" name="total" #total="ngModel" placeholder="Total cost" [(ngModel)]="projectDetails.CostingEstimation"
-            />
+              <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input class="form-control" type="text" name="total" #total="ngModel" placeholder="Total cost" [(ngModel)]="projectDetails.CostingEstimation">
+                </div>
           </div>
         </div>
         <div class="col-md-2"></div>
