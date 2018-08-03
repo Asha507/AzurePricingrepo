@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AzurePricingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ProjectDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_Account" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Project" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Product" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProjectManager" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PM_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SizingDoneBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SDB_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="QuotationDoneBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="QDB_EmailID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CostingEztimation" Type="money" />
+    <Property Name="Environment" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ConcurrentUserCount" Type="int" Nullable="false" />
+    <Property Name="DeploymentRegion" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectResources">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="ResourceType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ResourceSize" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SizeDescription" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RateCardData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MeterID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MeterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="MeterCategory" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="MeterSubCategory" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MeterTags" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MeterRegion" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MeterRates" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+    <Property Name="IncludedQuantity" Type="int" Nullable="false" />
+    <Property Name="MeterStatus" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProjectResources_ProjectDetails">
+    <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="1" />
+    <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProjectResources">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AzurePricingModelStoreContainer">
+    <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectResources" EntityType="Self.ProjectResources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RateCardData" EntityType="Self.RateCardData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProjectResources_ProjectDetails" Association="Self.FK_ProjectResources_ProjectDetails">
+      <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+      <End Role="ProjectResources" EntitySet="ProjectResources" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

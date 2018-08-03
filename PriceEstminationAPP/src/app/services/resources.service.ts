@@ -24,4 +24,9 @@ public getProjectDetailsByEmail(email):Observable<any>
   return this.http.get(environment.api+"/api/pricing/GetEstimationsByEmail?Email="+email);
 }
 
+public getProjectDetailsByClient(client):Observable<any>
+{
+  return this.http.get(environment.api+"/api/pricing/GetEstimationsByClient?client="+client);
+}
+
 }

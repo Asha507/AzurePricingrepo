@@ -12,3 +12,20 @@
     border: 0px;
     background-color: transparent;
 }
+.font-custom
+{
+    margin-top: 7%;
+    text-align: center;
+}
+.modal-dialog{
+    overflow-y: initial !important;
+    max-width: fit-content;
+}
+.modal-content
+{
+  
+}
+.modal-body{
+    height: 500px;
+    overflow-y: auto;
+}

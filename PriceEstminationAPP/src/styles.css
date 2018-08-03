@@ -1,10 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 .clear-fix
 {
-    margin: 1%;
+    margin: 2%;
 }
 .labelText label
 {
     font-size: 14px;
     font-weight: 500;
+}
+body
+{
+    font-size: 12px !important;
+}
+
+.form-control
+{
+    font-size: 12px !important;
+}
+hr.divider {
+    border-top: 1px dotted #8c8b8b;
+}
+.input-group-addon
+{
+    width: auto  !important;
 }

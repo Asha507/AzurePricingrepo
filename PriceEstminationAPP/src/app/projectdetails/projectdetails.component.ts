@@ -23,6 +23,7 @@ export class ProjectdetailsComponent implements OnInit {
   deploymentRegions: Array<Regions>;
   concurrentUsers: Array<ConcurrentUsers>;
   totalCost: number = 0;
+  isRegionSelected=false;
   constructor(private resourcesService: ResourcesService, private pricingService: PricingService) { }
 
   ngOnInit() {
@@ -74,12 +75,19 @@ export class ProjectdetailsComponent implements OnInit {
     if (this.resourceDetails[i].SizeDescription == undefined)
       this.resourceDetails[i].SizeDescription = "";
     else {
+      if(this.projectDetails.DeploymentRegion !== "Select")
+      {
+        this.isRegionSelected=true;
       this.pricingService.GetpricingDetails(this.resourceDetails[i].ResourceType, this.resourceDetails[i].SizeDescription, this.projectDetails.DeploymentRegion).subscribe(res => {
         this.resourceDetails[i].Price = res;
         this.projectDetails.CostingEstimation = this.projectDetails.CostingEstimation + (+res);
         // console.log(res);
       }
       );
+    }
+    else{
+      this.isRegionSelected=false;
+    }
     }
 
   }

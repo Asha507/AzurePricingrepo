@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AzurePricingModelStoreContainer" CdmEntityContainer="AzurePricingEntities">
+    <EntitySetMapping Name="ProjectDetails">
+      <EntityTypeMapping TypeName="AzurePricingModel.ProjectDetail">
+        <MappingFragment StoreEntitySet="ProjectDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Client_Account" ColumnName="Client_Account" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="ProjectManager" ColumnName="ProjectManager" />
+          <ScalarProperty Name="PM_EmailID" ColumnName="PM_EmailID" />
+          <ScalarProperty Name="SizingDoneBy" ColumnName="SizingDoneBy" />
+          <ScalarProperty Name="SDB_EmailID" ColumnName="SDB_EmailID" />
+          <ScalarProperty Name="QuotationDoneBy" ColumnName="QuotationDoneBy" />
+          <ScalarProperty Name="QDB_EmailID" ColumnName="QDB_EmailID" />
+          <ScalarProperty Name="CostingEztimation" ColumnName="CostingEztimation" />
+          <ScalarProperty Name="Environment" ColumnName="Environment" />
+          <ScalarProperty Name="ConcurrentUserCount" ColumnName="ConcurrentUserCount" />
+          <ScalarProperty Name="DeploymentRegion" ColumnName="DeploymentRegion" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectResources">
+      <EntityTypeMapping TypeName="AzurePricingModel.ProjectResource">
+        <MappingFragment StoreEntitySet="ProjectResources">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+          <ScalarProperty Name="ResourceSize" ColumnName="ResourceSize" />
+          <ScalarProperty Name="SizeDescription" ColumnName="SizeDescription" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RateCardDatas">
+      <EntityTypeMapping TypeName="AzurePricingModel.RateCardData">
+        <MappingFragment StoreEntitySet="RateCardData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+          <ScalarProperty Name="MeterName" ColumnName="MeterName" />
+          <ScalarProperty Name="MeterCategory" ColumnName="MeterCategory" />
+          <ScalarProperty Name="MeterSubCategory" ColumnName="MeterSubCategory" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="MeterTags" ColumnName="MeterTags" />
+          <ScalarProperty Name="MeterRegion" ColumnName="MeterRegion" />
+          <ScalarProperty Name="MeterRates" ColumnName="MeterRates" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="IncludedQuantity" ColumnName="IncludedQuantity" />
+          <ScalarProperty Name="MeterStatus" ColumnName="MeterStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -33,6 +33,14 @@ namespace AzurePricingEstimatedAPIAPP.Controllers
         static readonly string REGIONINFO = ConfigurationManager.AppSettings["RegionInfo"];
 
         [HttpGet]
+        [Route("Ping")]
+        public string Ping()
+        {
+            return "I am accessible";
+        }
+
+
+        [HttpGet]
         [Route("GetAzurePricingData")]
         public string GetAzurePricingData()
         {

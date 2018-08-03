@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 2%">
   <div class="row">
     <div class="panel panel-default custompanel">
       <div class="panel-heading">
@@ -29,7 +29,10 @@
           </div>
           <div class="col-md-3">
             <input type=text placeholder="Client Name" name="clientName" required class="form-control" [(ngModel)]="projectDetails.Client_Account"
-              #clientName="ngModel">
+              #clientName="ngModel" required>
+              <div *ngIf="clientName.errors && clientName.errors.required && (clientName.dirty||clientName.touched)" class="alert alert-danger">
+               <label>Client Name is required</label>
+                </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -39,21 +42,12 @@
           </div>
           <div class="col-md-3">
             <input type=text placeholder="Project Name" name="projectName" #projectName="ngModel" required class="form-control" [(ngModel)]="projectDetails.Project">
+            <div *ngIf="projectName.errors && projectName.errors.required && (projectName.dirty||projectName.touched)" class="alert alert-danger">
+                <label>Project Name is required</label>
+                 </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(clientName.invalid && clientName.dirty)" class="alert alert-danger">
-              Client Name is required
-            </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(projectName.invalid && projectName.dirty)" class="alert alert-danger">
-              Pprojec tName is required
-            </div>
-          </div>
-        </div>
+       
         <div class="clear-fix"></div>
         <div class="row">
           <div class="col-md-2">
@@ -63,6 +57,9 @@
           </div>
           <div class="col-md-3">
             <input type=text placeholder="Product Name" name="productName" #productName="ngModel" required class="form-control" [(ngModel)]="projectDetails.Product">
+            <div *ngIf="productName.errors && productName.errors.required && (productName.dirty||productName.touched)" class="alert alert-danger">
+                <label>Product Name is required</label>
+                 </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -71,17 +68,6 @@
           <div class="col-md-3">
             <input type=text placeholder="Date" name="date" #date="ngModel" class="form-control" required [(ngModel)]="projectDetails.CreatedOn"
               readonly>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(productName.invalid && productName.dirty)" class="alert alert-danger">
-              Product Name is required
-            </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -93,6 +79,9 @@
           </div>
           <div class="col-md-3">
             <input type=text placeholder="PM Name" name="pmName" #pmName="ngModel" required class="form-control" [(ngModel)]="projectDetails.ProjectManager">
+            <div *ngIf="pmName.errors && pmName.errors.required && (pmName.dirty||pmName.touched)" class="alert alert-danger">
+                <label>Project Manager Name is required</label>
+                 </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -103,23 +92,10 @@
           <div class="col-md-3">
             <input type=text placeholder="Email ID" name="pmEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #pmEmail="ngModel"
               required class="form-control" [(ngModel)]="projectDetails.PM_EmailID">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(pmName.invalid && pmName.dirty)" class="alert alert-danger">
-              PM Name is required
+              <div *ngIf="pmEmail.errors && pmEmail.errors.required && (pmEmail.dirty||pmEmail.touched)" class="alert alert-danger">
+                  <label>Email is required</label>
+                   </div>
             </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(pmEmail.invalid && pmEmail.dirty && !pmEmail.errors?.pattern )" class="alert alert-danger">
-              PM Email ID is required
-            </div>
-            <div *ngIf="(pmEmail.touched && pmEmail.errors?.pattern)" class="alert alert-danger">
-              Email is invalid
-            </div>
-          </div>
         </div>
         <div class="clear-fix"></div>
         <div class="row">
@@ -129,7 +105,10 @@
             </label>
           </div>
           <div class="col-md-3">
-            <input type=text placeholder="Name" name="sdbName" #sdbName="ngModel" required class="form-control" [(ngModel)]="projectDetails.SizingDoneBy">
+            <input type=text placeholder="Name" name="sdbName" #sdbName="ngModel" required class="form-control" [(ngModel)]="projectDetails.SizingBy">
+            <div *ngIf="sdbName.errors && sdbName.errors.required && (sdbName.dirty||sdbName.touched)" class="alert alert-danger">
+                <label>Name is required</label>
+                 </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -140,23 +119,10 @@
           <div class="col-md-3">
             <input type=text placeholder="Email ID" name="sdbEmail" #sdbEmail="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required class="form-control" [(ngModel)]="projectDetails.SDB_EmailID">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(sdbName.invalid && sdbName.dirty)" class="alert alert-danger">
-              Sizing done associate name is required
+              <div *ngIf="sdbEmail.errors && sdbEmail.errors.required && (sdbEmail.dirty||sdbEmail.touched)" class="alert alert-danger">
+                  <label>Email is required</label>
+                   </div>
             </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(sdbEmail.invalid && sdbEmail.dirty && !sdbEmail.errors?.pattern)" class="alert alert-danger">
-              Sizing done associate Email ID is required
-            </div>
-            <div *ngIf="(sdbEmail.touched && sdbEmail.errors?.pattern)" class="alert alert-danger">
-              Email is invalid
-            </div>
-          </div>
         </div>
         <div class="clear-fix"></div>
         <div class="row">
@@ -167,6 +133,9 @@
           </div>
           <div class="col-md-3">
             <input type=text placeholder="Name" name="qcb" #qcb="ngModel" required class="form-control" [(ngModel)]="projectDetails.QuotationDoneBy">
+            <div *ngIf="qcb.errors && qcb.errors.required && (qcb.dirty||qcb.touched)" class="alert alert-danger">
+                <label> Name is required</label>
+                 </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -177,23 +146,10 @@
           <div class="col-md-3">
             <input type=text placeholder="Email ID" name="qcbEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #qcbEmail="ngModel"
               required class="form-control" [(ngModel)]="projectDetails.QDB_EmailID">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(qcb.invalid && qcb.dirty)" class="alert alert-danger">
-              Quoting done associate name is required
+              <div *ngIf="qcbEmail.errors && qcbEmail.errors.required && (qcbEmail.dirty||qcbEmail.touched)" class="alert alert-danger">
+                  <label>Email is required</label>
+                   </div>
             </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(qcbEmail.invalid && qcbEmail.dirty && !qcbEmail.errors?.pattern)" class="alert alert-danger">
-              Quoting done associate Email ID is required
-            </div>
-            <div *ngIf="(qcbEmail.touched && qcbEmail.errors?.pattern)" class="alert alert-danger">
-              Email is invalid
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -222,6 +178,9 @@
                 {{env}}
               </option>
             </select>
+            <div *ngIf="projectDetails.Environment == 'Select' && (environment.dirty||environment.touched)" class="alert alert-danger">
+                <label>Environment is required</label>
+            </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -236,20 +195,11 @@
                 <option *ngFor="let userCnt of concurrentUsers">
                   {{userCnt}}
                 </option>
-              </select>          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(environment.invalid && environment.dirty)" class="alert alert-danger">
-              Environment is required
+              </select>        
+              <!-- <div *ngIf="projectDetails.ConcurrentUserCount == 'Select' && (CUC.dirty||CUC.touched)" class="alert alert-danger">
+                  <label>Select Concurrent UserCount</label>
+              </div>   -->
             </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(CUC.invalid && CUC.dirty)" class="alert alert-danger">
-              Concurrent user count is required
-            </div>
-          </div>
         </div>
         <div class="clear-fix"></div>
         <div class="row">
@@ -260,12 +210,16 @@
           </div>
           <div class="col-md-3">
             <!-- <input type=text placeholder="Region Name" name="deployment" #deployment="ngModel" required class="form-control" [(ngModel)]="projectDetails.DeploymentRegion"> -->
-            <select class="form-control customdropdown" name="deployment" #deployment="ngModel" required [(ngModel)]="projectDetails.DeploymentRegion" (change)="ResetResourceCosting()">
+            <select class="form-control customdropdown" name="deployment"
+             #deployment="ngModel" required [(ngModel)]="projectDetails.DeploymentRegion" (change)="ResetResourceCosting()">
               <option>Select</option>
               <option *ngFor="let deploymentRegion of deploymentRegions">
                 {{deploymentRegion}}
               </option>
             </select>
+            <div *ngIf="projectDetails.DeploymentRegion == 'Select' && (deployment.dirty||deployment.touched)" class="alert alert-danger">
+                <label>Select Deployment</label>
+            </div> 
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
@@ -274,25 +228,16 @@
             </label>
           </div>
           <div class="col-md-3">
-            <select class="form-control customdropdown" name="duration" #duration="ngModel" required [(ngModel)]="projectDetails.Duration">
+            <select class="form-control customdropdown" name="duration" #duration="ngModel" 
+            required [(ngModel)]="projectDetails.Duration">
               <option>Select</option>
               <option *ngFor="let duration of durations">
                 {{duration}}
               </option>
             </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div *ngIf="(deployment.invalid && deployment.dirty)" class="alert alert-danger">
-              Deployment Region is required
-            </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5">
-            <div *ngIf="(duration.invalid && duration.dirty)" class="alert alert-danger">
-              Duration is required
-            </div>
+            <div *ngIf="projectDetails.Duration == 'Select' && (duration.dirty||duration.touched)" class="alert alert-danger">
+                <label>Select Duration</label>
+            </div> 
           </div>
         </div>
         <div class="clear-fix"></div>
@@ -345,6 +290,9 @@
               <div class="input-group">
                   <span class="input-group-addon">$</span>
                   <input type="text" class="form-control" name="Price" #Price="ngModel" [(ngModel)]="resourceRow.Price" readonly>    
+                  <div *ngIf="isRegionSelected" class="alert alert-danger">
+                      <label>Please Select Region</label>
+                 </div>
                 </div>
           </div>
           <div class="col-md-1">
@@ -354,9 +302,9 @@
           </div>
           <div class="clear-fix"></div>
         </div>
-
+        <div class="clear-fix"></div>
         <div class="row">
-          <input type="button" class="btn btn-primary custombutton" value="Add New Resource" (click)="addNewResource()" />
+          <input type="button" class="btn btn-success custombutton labelText" value="Add New Resource" (click)="addNewResource()" />
         </div>
       </div>
       <hr class="divider">
@@ -380,7 +328,7 @@
       <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-2">
-          <input type="submit" text="Submit" class="form-control btn btn-primary" value="Submit" (click)="SubmitClick()">
+          <input type="submit" text="Submit" [disabled]="!isRegionSelected" class="form-control btn btn-primary" value="Submit" (click)="SubmitClick()">
         </div>
         <div class="col-md-6"></div>
         <!-- <a class='col-md-2' href="#" >Add New Resource</a> -->

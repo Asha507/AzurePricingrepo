@@ -30,7 +30,7 @@
 		{
 			"Type": "AzureSQL Database",
 			"Sizes": [{
-				"Size": "5 DTU/2 GB Storage",
+				"Size": "5 DTU/2 GB Storage (Basic)",
 				"Description": ""
 			},
 			{

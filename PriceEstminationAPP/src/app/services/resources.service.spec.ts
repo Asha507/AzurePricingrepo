@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { Services\ResourcesService } from './services\resources.service';
+import { ResourcesService } from './resources.service';
 
-describe('Services\ResourcesService', () => {
+describe('ResourcesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Services\ResourcesService]
+      providers: [ResourcesService]
     });
   });
 
-  it('should be created', inject([Services\ResourcesService], (service: Services\ResourcesService) => {
+  it('should be created', inject([ResourcesService], (service: ResourcesService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row estimationdiv">
     <div class="col-md-12">
       <div class="panel panel-default panel-table">
@@ -7,50 +6,60 @@
           <div class="row">
             <div class="col-md-5">
               <h3 class="panel-title">Estimations Info</h3>
-            </div>          
+            </div>
           </div>
           <div class="clear-fix"></div>
         </div>
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3">
-                  <h3 class="panel-title">Search By</h3>
-                </div> 
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Quote created by EmailID"/>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
-                          </div>
-                    </div>
+          <div class="row">
+            <div class="col-md-2">
+              <h3 class="panel-title">Search By</h3>
+            </div>
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Quote created by EmailID" [(ngModel)]="searchEmail" (keydown.enter)="SearchByEmail()"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="SearchByEmail()" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
                 </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Estimation ID"/>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
-                          </div>
-                    </div>
-                  </div>  
-                  <div class="col-md-3">
-                      <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Client">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"> <i class="glyphicon glyphicon-search"></i></button>
-                          </div>
-                      </div>
-                  </div>           
               </div>
-              <div class="clear-fix">{{data}}</div>
+            </div>
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Estimation ID" [(ngModel)]="searchID" (keydown.enter)="SearchByID()"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="SearchByID()">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Client" [(ngModel)]="searchClient" (keydown.enter)="SearchByclient()">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="SearchByclient()">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear-fix"></div>
+
           <div class="table-responsive font-custom" *ngIf="data?.length>0">
-            <table class="table table-bordered">
-              <thead>
+            <table class="table table-bordered" style="text-align: center">
+              <thead class="thead-light">
                 <th>Estimation ID</th>
                 <th>Client Name</th>
                 <th>Project Name</th>
                 <th>Created ON</th>
                 <th>EmailID</th>
-                <th>View Details</th>
+                <th>Total Price(USD)</th>
+                <th>Action</th>
               </thead>
               <tbody>
                 <tr *ngFor="let item of data">
@@ -59,16 +68,266 @@
                   <td>{{item["Project"]}}</td>
                   <td>{{item["CreatedOn"]}}</td>
                   <td>{{item["QDB_EmailID"]}}</td>
-                  <td></td>
+                  <td>{{item["CostingEztimation"]}}</td>
+                  <td style="text-align:center">
+                    <button type="button" class="btn btn-info btn-lg" (click)="OnSelect(item)" data-toggle="modal" data-target="#myModal">
+                      <span class="glyphicon glyphicon-circle-arrow-right"></span> View
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div>
-              No Records to display            
+          <div *ngIf="data?.length==0" class="font-custom" style="text-align: center">
+            No Records to display
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="myModal" *ngIf="selectedItem!=undefined">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Estimation Details</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <h3 class="panel-title">Project Details</h3>
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Estimation ID
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.ID}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Client Name
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.Client_Account}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Project Name
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.Project}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Duration
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.Product}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Project Manager
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.ProjectManager}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Project Manager Email
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.PM_EmailID}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Sizing Done BY
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.SizingDoneBy}}
+                    </div>
+
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Sizing Done By Email
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.SDB_EmailID}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Quote Created By
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.QuotationDoneBy}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Quote Created By Email
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.QDB_EmailID}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                </div>
+              </div>
+              <div class="clear-fix"></div>
+              <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <h3 class="panel-title">Environment Details</h3>
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Environment
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.Environment}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Concurrent Users
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.ConcurrentUserCount}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Deployment Region
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.DeploymentRegion}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                      Duration
+                    </div>
+                    <div class="col-md-1">:</div>
+                    <div class="col-md-4">
+                      {{selectedItem.Duration}}
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                </div>
+              </div>
+              <div class="clear-fix"></div>
+              <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <h3 class="panel-title">Resources Details</h3>
+                    </div>
+                  </div>
+                  <div class="clear-fix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive font-custom" *ngIf="selectedItem.ProjectResources?.length>0">
+                        <table class="table table-bordered" style="text-align: center">
+                          <thead class="thead-light">
+                            <th>Resource Type</th>
+                            <th>Size</th>
+                            <th>Description</th>
+                            <th>Cost</th>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of selectedItem.ProjectResources">
+                              <td>{{item["ResourceType"]}}</td>
+                              <td>{{item["ResourceSize"]}}</td>
+                              <td>{{item["SizeDescription"]}}</td>
+                              <td>{{item["Price"]}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="clear-fix"></div>
+                      <div class="row">
+                          <div class="col-md-2"></div>
+                          <div class="col-md-3" style="text-align: center">
+                            Total Cost (USD)
+                          </div>
+                          <div class="col-md-1">:</div>
+                          <div class="col-md-4">
+                            {{selectedItem.CostingEztimation}}
+                          </div>
+                        </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

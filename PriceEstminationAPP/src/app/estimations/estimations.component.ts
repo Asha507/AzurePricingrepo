@@ -11,11 +11,11 @@ export class EstimationsComponent implements OnInit {
 
   public data:Array<any> = [];
   public keys: Array<string> = [];
-  rowsOnPage: number = 5;
-  public filterQuery = "";
-  public showApproveButton:boolean=true;
-  public showRejectButton:boolean=true;
-  public remark:any =[];;
+  searchEmail:string="";
+  searchID:string="";
+  searchClient:string="";
+  selectedItem:string;
+
   index:number=0;
   constructor(private resourcesService:ResourcesService) {
    
@@ -25,24 +25,69 @@ export class EstimationsComponent implements OnInit {
 
   }
 
-  SearchByID(id)
+  SearchByID()
   {
-    this.resourcesService.getProjectDetailsByID(id).subscribe(response=>
+    if(this.searchID!="")
+    {
+      debugger; 
+      this.searchEmail="";
+      this.searchClient="";
+    this.resourcesService.getProjectDetailsByID(this.searchID).subscribe(response=>
       {
-        debugger;
         this.data=response;
         this.keys=Object.keys(this.data);
       });
+    }
   }
 
-  SearchByEmail(email)
+  SearchByEmail()
   {
-    this.resourcesService.getProjectDetailsByEmail(email).subscribe(response=>
+    if(this.searchEmail!="")
+    {
+      this.searchClient="";
+      this.searchID="";
+    this.resourcesService.getProjectDetailsByEmail(this.searchEmail).subscribe(response=>
       {
         debugger;
         this.data=response;
         this.keys=Object.keys(this.data);
       });
+    }
   }
   
+  SearchByclient()
+  {
+    if(this.searchClient!="")
+    {
+      this.searchEmail="";
+      this.searchID="";
+    this.resourcesService.getProjectDetailsByClient(this.searchClient).subscribe(response=>
+      {
+        debugger;
+        this.data=response;
+        this.keys=Object.keys(this.data);
+      });
+    }
+  }
+  onKeydown(from) {
+    if(from=='ID')
+    {
+      this.SearchByID();
+    }
+    if(from=='Email')
+    {
+      this.SearchByEmail();
+    }
+    if(from=='Client')
+    {
+      this.SearchByclient();
+    }
+  }
+
+  OnSelect(item)
+  {
+    debugger;
+     this.selectedItem=item;
+  }
+
 }

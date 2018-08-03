@@ -11,10 +11,12 @@
 .customdropdown
 {
    height: calc(2.25rem + 14px) !important;
+   margin-bottom: 6%;
 }
 .custombutton
 {
     margin: 1%;
+    font-size: 14px;
 }
 .cusbtntrash
 {
@@ -28,10 +30,3 @@
 {
     color: red;
 }
-hr.divider {
-        border-top: 1px dotted #8c8b8b;
-    }
-    .input-group-addon
-    {
-        width: auto  !important;
-    }
